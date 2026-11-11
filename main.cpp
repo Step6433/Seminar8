@@ -62,8 +62,23 @@ double secretPairs(const double a[], int n) {
     return maxValue - minValue;
 }
 
+constexpr int maxMatrixSize = 100;
+
+bool enigma(const double matrix[][maxMatrixSize], int n) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            if (matrix[i][j] != matrix[j][i]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 int main() {
-    /* Задача 1. Сумма квадратов
+    // Задача 1. Сумма квадратов
+    /*
     long long number;
     std::cout << "Введите целое положительное число: ";
     if (!(std::cin >> number) || number <= 0) {
@@ -76,25 +91,54 @@ int main() {
     */
 
     // Задача 2. Размах массива
+    /*
     const int maxSize = 1000;
     double a[maxSize];
-    int n;
+    int arraySize;
 
     std::cout << "Введите количество элементов (от 1 до 1000): ";
-    if (!(std::cin >> n) || n < 1 || n > maxSize) {
+    if (!(std::cin >> arraySize) || arraySize < 1 || arraySize > maxSize) {
         std::cout << "Неверное количество элементов.\n";
         return 1;
     }
 
     std::cout << "Введите элементы массива через пробел:\n";
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < arraySize; ++i) {
         if (!(std::cin >> a[i])) {
             std::cout << "Ошибка ввода.\n";
             return 1;
         }
     }
 
-    std::cout << "Обычная версия: " << secret(a, n) << '\n';
-    std::cout << "Попарная версия: " << secretPairs(a, n) << '\n';
+    std::cout << "Обычная версия: " << secret(a, arraySize) << '\n';
+    std::cout << "Попарная версия: " << secretPairs(a, arraySize) << '\n';
+    */
+
+    // Задача 3. Проверка симметричности матрицы
+    double matrix[maxMatrixSize][maxMatrixSize];
+    int n;
+
+    std::cout << "Введите порядок матрицы (от 1 до " << maxMatrixSize << "): ";
+    if (!(std::cin >> n) || n < 1 || n > maxMatrixSize) {
+        std::cout << "Неверный размер матрицы.\n";
+        return 1;
+    }
+
+    std::cout << "Введите элементы матрицы построчно:\n";
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (!(std::cin >> matrix[i][j])) {
+                std::cout << "Ошибка ввода.\n";
+                return 1;
+            }
+        }
+    }
+
+    if (enigma(matrix, n)) {
+        std::cout << "Матрица симметрична.\n";
+    } else {
+        std::cout << "Матрица несимметрична.\n";
+    }
+
     return 0;
 }
