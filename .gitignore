@@ -1,0 +1,14 @@
+
+# CMake
+build/
+cmake-build-*/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Compiled files
+*.o
+*.out
