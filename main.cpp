@@ -3,6 +3,7 @@
 
 constexpr int maxMatrixSize = 100;
 
+// Задача 1. Сумма квадратов
 long long mystery(long long n) {
     long long sum = 0;
     for (long long i = 1; i <= n; ++i) {
@@ -15,6 +16,7 @@ long long mysteryFormula(long long n) {
     return n * (n + 1) * (2 * n + 1) / 6;
 }
 
+// Задача 2. Размах массива
 double secret(const double a[], int n) {
     double minValue = a[0];
     double maxValue = a[0];
@@ -64,6 +66,7 @@ double secretPairs(const double a[], int n) {
     return maxValue - minValue;
 }
 
+// Задача 3. Проверка симметричности
 bool enigma(const double matrix[][maxMatrixSize], int n) {
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
@@ -75,6 +78,7 @@ bool enigma(const double matrix[][maxMatrixSize], int n) {
     return true;
 }
 
+// Задача 4. Умножение матриц
 void multiply(const double a[][maxMatrixSize],
               const double b[][maxMatrixSize],
               double c[][maxMatrixSize], int n) {
@@ -136,6 +140,18 @@ void printMatrix(const double matrix[][maxMatrixSize], int n) {
     }
 }
 
+// Задача 5. Длина двоичной записи
+int binary(long long n) {
+    int bits = 1;
+
+    while (n > 1) {
+        n /= 2;
+        ++bits;
+    }
+
+    return bits;
+}
+
 int main() {
     // Задача 1. Сумма квадратов
     /*
@@ -174,7 +190,7 @@ int main() {
     std::cout << "Попарная версия: " << secretPairs(values, arraySize) << '\n';
     */
 
-    // Задача 3. Проверка симметричности матрицы
+    // Задача 3. Проверка симметричности
     /*
     double matrix[maxMatrixSize][maxMatrixSize];
     int matrixSize;
@@ -199,6 +215,7 @@ int main() {
     */
 
     // Задача 4. Умножение матриц
+    /*
     int n;
     std::cout << "Введите порядок матриц (от 1 до " << maxMatrixSize << "): ";
     if (!(std::cin >> n) || n < 1 || n > maxMatrixSize) {
@@ -233,6 +250,19 @@ int main() {
     multiplyOptimized(a, b, c, n);
     std::cout << "Оптимизированная версия:\n";
     printMatrix(c, n);
+    */
+
+    // Задача 5. Длина двоичной записи
+    long long number;
+    std::cout << "Введите целое положительное число: ";
+    if (!(std::cin >> number) || number <= 0) {
+        std::cout << "Неверное число.\n";
+        return 1;
+    }
+
+    int bits = binary(number);
+    std::cout << "Количество битов: " << bits << '\n';
+    std::cout << "Количество делений: " << bits - 1 << '\n';
 
     return 0;
 }
